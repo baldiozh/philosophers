@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/13 20:57:33 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/13 21:10:25 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ typedef struct s_philo
 
 }			t_philo;
 
-typedef struct s_ptread
-{
-	ptread t1;
-	
-}
 
 /* init */
 t_philo	*init_philo(char **argv);
