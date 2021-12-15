@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/15 17:51:24 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/15 20:48:53 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,36 @@
 # define PHILOSOPHERS_H
 
 # include <pthread.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <stdio.h>
 
-typedef struct s_philo
+typedef struct s_data
 {
 	int	num;
 	int	tdeath;
 	int	teat;
 	int	tsleep;
+	int	meals;
+
+	pthread_mutex_t *forks;
+	pthread_mutex_t ;
+
+}			t_data;
+
+typedef struct s_philo
+{
+	int		p_id;
 
 }			t_philo;
 
-
 /* init */
-t_philo	*init_philo(char **argv);
+t_data	*init_data(char **argv);
 
 /* utils */
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+void	ft_usleep(int ms);
 
 #endif
 
