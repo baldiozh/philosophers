@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/16 20:33:27 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:59:42 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,19 @@ typedef struct s_data
 	int				meals;
 	time_t			start;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	speak;
+	pthread_mutex_t	speak_mutex;
+
 
 }			t_data;
 
 typedef struct s_philo
 {
-	int						*id;
+	int						num;
 	long long				lastmeal;
-	pthread_mutex_t			left_fork;
-	pthread_mutex_t			right_fork;
+	// pthread_mutex_t			left_fork;
+	// pthread_mutex_t			right_fork;
+	pthread_mutex_t			death_mutex;
+
 	t_data		*data;
 
 }			t_philo;
