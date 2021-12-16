@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/15 20:48:53 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/16 15:55:15 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_data
 	int	meals;
 
 	pthread_mutex_t *forks;
-	pthread_mutex_t ;
 
 }			t_data;
 
