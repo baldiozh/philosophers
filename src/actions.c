@@ -1,23 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/16 17:12:53 by gmckinle         ###   ########.fr       */
+/*   Created: 2021/12/16 18:25:35 by gmckinle          #+#    #+#             */
+/*   Updated: 2021/12/16 18:26:12 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-// void	ft_usleep(int ms) // is that ok?
-// {
-// 	long	time;
 
-// 	 time= gettimeofday();
-// 	usleep(ms * 920);
-// 	while ( < time + (long)ms)
-// 		usleep(ms * 3);
-// }

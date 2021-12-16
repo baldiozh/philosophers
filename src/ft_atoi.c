@@ -6,12 +6,12 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:36:32 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/13 19:36:47 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/16 16:28:02 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 static int	ft_sign(const char *str, int sign, int i)
 {
