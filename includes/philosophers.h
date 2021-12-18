@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/18 17:37:06 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:53:09 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,32 @@
 # define THINK 5
 # define EAT 6
 
-
 typedef struct s_data
 {
 	int				philo_num;
 	int				tdeath;
 	int				teat;
 	int				tsleep;
-	int				meals; //if no arg 4 this then -1
-	time_t			start;
+	int				meals; //if no arg for this then -1
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	speak_mutex;
+	pthread_t		*philos;
 
 }			t_data;
 
 typedef struct s_philarg
 {
 	int				num;
-	long long		lastmeal;
+	time_t			start;
+	time_t			lastmeal; //long long
 	int				left_fork;
 	int				right_fork;
+	int				isdead;
 	pthread_mutex_t	death_mutex;
 	t_data		*data;
 
 }			t_philarg;
+
 
 /* init */
 int		init(int argc, char **argv, t_data *data);
@@ -61,7 +63,7 @@ int		ft_atoi(const char *str);
 void	message(t_philarg *philo, int action);
 
 /* time */
-long	current_time(void);
+long	timeofday(void);
 void	ft_usleep(int ms);
 
 /* actions */

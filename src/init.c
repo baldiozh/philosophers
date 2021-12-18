@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/18 17:41:08 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/18 21:10:24 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,8 @@ t_philarg	*init_philo(t_data *data)
 	pthread_mutex_init(&(data->speak_mutex), NULL);
 	while(i < data->philo_num)
 	{
-		pthread_mutex_init(&(data->forks[i]), NULL);
 		philo[i].num = i;
-		philo[i].lastmeal = current_time();
+		// philo[i].lastmeal = timeofday();
 		// pthread_mutex_init(&philo[i].left_fork, NULL);          //???
 		// if (i == data->philo_num)
 		// 	pthread_mutex_init(&philo[1].right_fork, NULL);

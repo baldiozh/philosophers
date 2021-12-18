@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:09:40 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/18 17:12:01 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:54:30 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	main(int argc, char **argv)
 		printf("thread ctreated.\n");
 	pthread_join(t1, NULL);
 	pthread_detach(t1);
-	printf("%ld\n", current_time());
+	printf("%ld\n", timeofday());
 	return(0);
 }

@@ -6,13 +6,13 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:58:52 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/16 19:13:45 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:55:23 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-long	current_time(void)
+long	timeofday(void)
 {
 	struct timeval	tv;
 	long			res;
@@ -26,8 +26,8 @@ void	ft_usleep(int ms)
 {
 	long	time;
 
-	time = current_time();
+	time = timeofday();
 	usleep(ms * 920);
-	while (current_time() < time + (long)ms)
+	while (timeofday() < time + (long)ms)
 		usleep(ms * 3);
 }
