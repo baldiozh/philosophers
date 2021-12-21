@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:45:51 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:46:29 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,23 @@ void init_data(int argc, char **argv, t_data *data)
 
 void	init_philarg(t_data *data)
 {
-	t_philarg *philoo;
+	t_philarg *philo;
 	int		i;
 
 	i = 0;
-	philoo = malloc(sizeof(t_philarg) * data->philo_num);
+	philo = malloc(sizeof(t_philarg) * data->philo_num);
 	if (!data->philo)
 		error(ERR_MEMORY);
 	while(i < data->philo_num)
 	{
-		philoo[i].num = i;
-		philoo[i].start_meal = timeofday(); //0!
-	    philoo[i].left_fork = i;
-		philoo[i].right_fork = i + 1;
+		philo[i].num = i;
+		philo[i].start_meal = timeofday(); //0!
+	    philo[i].left_fork = i;
+		philo[i].right_fork = i + 1;
 		if (i == data->philo_num - 1)
-			philoo[i].right_fork = 0;
-		philoo[i].data = data;
-		data->philo[i] = philoo[i];
+			philo[i].right_fork = 0;
+		philo[i].data = data;
+		data->philo[i] = philo[i];
 		i++;
 	}
 }

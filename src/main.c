@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:09:40 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:45:19 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:47:56 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	if (!data)
 		error(ERR_MEMORY);
 	init(argc, argv, data);
+
 	// while (1)
 	// {
 
@@ -28,6 +29,6 @@ int	main(int argc, char **argv)
 	// 	printf("thread ctreated.\n");
 	// pthread_join(t1, NULL);
 	// pthread_detach(t1);
-	printf("%d\n", data->philo_num);
+	printf("%ld\n", data->philo->start_meal);
 	return(0);
 }
