@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:26:43 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:52:48 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		ft_atoi(const char *str);
 void	ft_putstr(char *str);
 void	message(t_philarg *philo, int action);
 void	error(char *str);
+void* hello(void *args);
 
 /* time */
 long	timeofday(void);

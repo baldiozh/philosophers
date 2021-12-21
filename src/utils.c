@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:28:41 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:54:07 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	message(t_philarg *philo, int action)
 	else if (action == THINK)
 		printf("is thinking\n");
 	else if (action == EAT)
-		printf("is eating");
+		printf("is eating\n");
 	else
 		printf("\x1b[0;31mWrong type of action.\n");
 }
