@@ -12,7 +12,7 @@ HEADERS			= $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 SRC_DIR			= ./src/
 #SRC_BONUS_DIR	= ./src_bonus/
 SRC_LIST		= philosophers.c \
-				ft_atoi.c init.c utils.c time.c actions.c 
+				ft_atoi.c init.c utils.c time.c actions.c
 
 # SRC_BONUS_LIST = main.c init.c utils.c ft_atoi.c
 SRC 			= $(addprefix $(SRC_DIR), $(SRC_LIST))
@@ -25,7 +25,7 @@ OBJ				= $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
 # Compile
 CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror
+CFLAGS 	= -Wall -Wextra -Werror -g
 
 # Colors
 GREEN 	= \x1b[0;32m

@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:09:40 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/18 20:54:30 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:52:02 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,28 @@ void* hello(void *args)
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
-	pthread_t t1;
+	t_data	*data;
+	int i;
 
-	if (init(argc, argv,  &data) == -1)
+	data = NULL;
+	data = (t_data *)malloc(sizeof(t_data));
+	i = 0;
+	if (init(argc, argv,  data) < 0)
 		return (-1);
-	if (!pthread_create(&t1, NULL, hello, NULL))
-		printf("thread ctreated.\n");
-	pthread_join(t1, NULL);
-	pthread_detach(t1);
-	printf("%ld\n", timeofday());
+	data->prog_st = timeofday();
+	while (i < data->philo_num)
+	{
+		pthread_create(&data->philos[i], NULL, philo_life, &data->philo[i]);
+		i++;
+	}
+	while (1)
+	{
+
+	}
+	// if (!pthread_create(&t1, NULL, hello, NULL))
+	// 	printf("thread ctreated.\n");
+	// pthread_join(t1, NULL);
+	// pthread_detach(t1);
+	// printf("%ld\n", timeofday());
 	return(0);
 }

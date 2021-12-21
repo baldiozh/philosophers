@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/18 20:56:32 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:55:58 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	*philo_life(void *data)
 	philo = (t_philarg *)data;
 	if (philo->num % 2 == 0)
 		usleep(100);
-	philo->lastmeal = timeofday();
-	philo->start = timeofday();
-	if (!philo->isdead)
+	// philo->lastmeal = timeofday();
+	// philo->start = timeofday();
+	if (!philo->data->isdead)
 	{
 		eating(philo);
 		sleeping(philo);
@@ -30,14 +30,11 @@ void	*philo_life(void *data)
 	return (NULL);
 }
 
-void	letsgo(t_data *data, t_philarg *philo)
+void	letsgo(t_data *data)
 {
-	pthread_t	*threads;
 	int			i;
 
 	i = 0;
-	threads = (pthread_t *)malloc(sizeof(pthread_t) * data->philo_num);
-	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_num);
 	if(!threads || !data->forks)
 	{
 		printf(ERR_MEMORY);
