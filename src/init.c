@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:30:49 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:45:51 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ void	init_mutexes(t_data *data)
 
 void init_data(int argc, char **argv, t_data *data)
 {
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		error(ERR_MEMORY);
 	data->philo_num = ft_atoi(argv[1]);
 	data->isdead = 0;
 	data->tdeath = ft_atoi(argv[2]);
@@ -75,9 +72,8 @@ void	init_philarg(t_data *data)
 
 void	init(int argc, char **argv, t_data *data)
 {
-
 	if (argc < 5 || argc > 6)
 		error(ERR_ARG);
 	init_data(argc, argv, data);
-	init_philarg(data);
+	// init_philarg(data);
 }
