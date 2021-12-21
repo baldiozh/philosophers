@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 18:56:21 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 20:29:01 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct s_philarg
 
 
 /* init */
-int		init(int argc, char **argv, t_data *data);
-int init_data(int argc, char **argv, t_data *data);
-int init_philarg(t_data *data);
+void	init(int argc, char **argv, t_data *data);
+void	init_data(int argc, char **argv, t_data *data);
+void	init_philarg(t_data *data);
 
 /* utils */
 int		ft_atoi(const char *str);

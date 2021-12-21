@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:09:40 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 18:52:02 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 20:32:13 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	int i;
 
-	data = NULL;
 	data = (t_data *)malloc(sizeof(t_data));
 	i = 0;
-	if (init(argc, argv,  data) < 0)
-		return (-1);
+	init(argc, argv, data);
 	data->prog_st = timeofday();
 	while (i < data->philo_num)
 	{
-		pthread_create(&data->philos[i], NULL, philo_life, &data->philo[i]);
+		pthread_create(&data->philos[i], NULL, hello, &data->philo[i]);
 		i++;
 	}
 	while (1)
