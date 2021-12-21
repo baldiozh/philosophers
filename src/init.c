@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 20:33:57 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 20:46:22 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void init_data(int argc, char **argv, t_data *data)
 	int i;
 
 	i = 0;
-	
+	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 	{
 		printf(ERR_MEMORY);
@@ -53,7 +53,7 @@ void init_data(int argc, char **argv, t_data *data)
 }
 
 
-void	init_philo(t_data *data)
+void	init_philarg(t_data *data)
 {
 	t_philarg *philoo;
 	int		i;
@@ -82,11 +82,12 @@ void	init_philo(t_data *data)
 
 void	init(int argc, char **argv, t_data *data)
 {
+
 	if (argc < 5 || argc > 6)
 	{
 		printf(ERR_ARG);
 		exit(EXIT_FAILURE);
 	}
 	init_data(argc, argv, data);
-	init_philo(data);
+	init_philarg(data);
 }

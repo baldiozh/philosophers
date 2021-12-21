@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 20:29:01 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 20:48:23 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ void	sleeping(t_philarg *philo);
 void	thinking(t_philarg *philo);
 void	eating(t_philarg *philo);
 
+/* let's go */
 void	*philo_life(void *data);
+void	process(t_data *data);
 
 #endif
 

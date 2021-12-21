@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 18:58:52 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/18 20:55:23 by gmckinle         ###   ########.fr       */
+/*   Created: 2021/12/13 18:09:40 by gmckinle          #+#    #+#             */
+/*   Updated: 2021/12/21 20:49:01 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-long	timeofday(void)
+int	main(int argc, char **argv)
 {
-	struct timeval	tv;
-	long			res;
+	t_data		*data;
 
-	gettimeofday(&tv, NULL);
-	res = 1000 * (long)tv.tv_sec + (long)tv.tv_usec / 1000;
-	return (res);
-}
+	data = NULL;
+	init(argc, argv, data);
+	// while (1)
+	// {
 
-void	ft_usleep(int ms)
-{
-	long	time;
-
-	time = timeofday();
-	usleep(ms * 920);
-	while (timeofday() < time + (long)ms)
-		usleep(ms * 3);
+	// }
+	// if (!pthread_create(&t1, NULL, hello, NULL))
+	// 	printf("thread ctreated.\n");
+	// pthread_join(t1, NULL);
+	// pthread_detach(t1);
+	// printf("%ld\n", timeofday());
+	return(0);
 }
