@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:52:48 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:59:24 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	init_philarg(t_data *data);
 /* utils */
 int		ft_atoi(const char *str);
 void	ft_putstr(char *str);
-void	message(t_philarg *philo, int action);
+void	message(int action);
 void	error(char *str);
 void* hello(void *args);
 
@@ -71,9 +71,9 @@ long	timeofday(void);
 void	ft_usleep(int ms);
 
 /* actions */
-void	sleeping(t_philarg *philo);
-void	thinking(t_philarg *philo);
-void	eating(t_philarg *philo);
+void	sleeping(t_data *data);
+void	thinking(t_data *data);
+void	eating(t_data *data);
 
 /* let's go */
 void	*philo_life(void *data);

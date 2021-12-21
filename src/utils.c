@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:54:07 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:57:47 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ void	ft_usleep(int ms)
 		usleep(ms * 3);
 }
 
-void	message(t_philarg *philo, int action)
+void	message(int action)
 {
-	(void)philo;
 	if (action == SLEEP)
 		printf("is sleeping\n");
 	else if (action == THINK)

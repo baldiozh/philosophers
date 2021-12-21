@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:53:51 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:59:45 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	*philo_life(void *data)
 	// philo->start = timeofday();
 	if (!philo->data->isdead)
 	{
-		eating(philo);
-		sleeping(philo);
-		thinking(philo);
+		eating(data);
+		sleeping(data);
+		thinking(data);
 	}
 	return (NULL);
 }
