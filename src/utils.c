@@ -6,11 +6,17 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 20:49:59 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:28:41 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+void	error(char *str)
+{
+	ft_putstr(str);
+	exit(EXIT_FAILURE);
+}
 
 long	timeofday(void)
 {

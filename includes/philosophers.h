@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 20:48:23 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:26:43 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ void	init_philarg(t_data *data);
 
 /* utils */
 int		ft_atoi(const char *str);
+void	ft_putstr(char *str);
 void	message(t_philarg *philo, int action);
+void	error(char *str);
 
 /* time */
 long	timeofday(void);
