@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:59:24 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:13:07 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,33 @@
 # define ERR_MEMORY		"\x1b[0;31mMemory allocation error.\n"
 # define SLEEP 4
 # define THINK 5
-# define EAT 6
+# define TAKE_FORKS 6
+# define EAT 7
+# define DIED 8
 
 
 typedef struct s_data
 {
 	int				philo_num;
-	int				prog_st;
 	int				tdeath;
 	int				teat;
 	int				tsleep;
-	int				meals; //if no arg for this then -1
+	int				meals_num; //if no arg for this then -1
+	int				prog_start;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*speak_mutex;
 	pthread_mutex_t	*death_mutex;
-	pthread_t		philos[200];
-	int				isdead;
+	pthread_t		philo_tr[200];
+	int				isdead; //1 if dead
 	struct s_philarg		*philo;
 }			t_data;
 
 typedef struct s_philarg
 {
-	int				num;
+	int				id;
+	int				meals;
 	time_t			start_meal;
+	time_t			last_meal;
 	int				left_fork;
 	int				right_fork;
 	t_data		*data;
@@ -57,22 +61,24 @@ typedef struct s_philarg
 /* init */
 void	init(int argc, char **argv, t_data *data);
 void	init_data(int argc, char **argv, t_data *data);
+void	init_mutexes(t_data *data);
 void	init_philarg(t_data *data);
 
-/* utils */
+/* libft */
 int		ft_atoi(const char *str);
 void	ft_putstr(char *str);
-void	message(int action);
-void	error(char *str);
-void* hello(void *args);
 
-/* time */
+/* utils */
+void	error(char *str);
 long	timeofday(void);
 void	ft_usleep(int ms);
+void	message(t_data *data, int action);
+void*	hello(void *args);
 
 /* actions */
 void	sleeping(t_data *data);
 void	thinking(t_data *data);
+void	take_forks(t_data *data);
 void	eating(t_data *data);
 
 /* let's go */

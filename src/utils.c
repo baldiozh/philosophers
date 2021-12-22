@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:57:47 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/22 18:00:13 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,26 @@ void	ft_usleep(int ms)
 		usleep(ms * 3);
 }
 
-void	message(int action)
+void	message(t_data *data, int action)
 {
+	int	current_time;
+	int	timestamp;
+
+	current_time = timeofday();
+	timestamp = data->prog_start - current_time;
 	if (action == SLEEP)
-		printf("is sleeping\n");
+		printf("%d ms	%d	is sleeping\n", timestamp, data->philo->id);
 	else if (action == THINK)
-		printf("is thinking\n");
+		printf("%d ms	%d	is thinking\n", timestamp, data->philo->id);
+	else if (action == TAKE_FORKS)
+		printf("%d ms	%d	has taken forks\n", timestamp, data->philo->id);
 	else if (action == EAT)
-		printf("is eating\n");
+		printf("%d ms	%d	is eating\n", timestamp, data->philo->id);
+	else if (action == DIED)
+		printf("%d ms	%d	died\n", ++timestamp, data->philo->id);
 	else
+	{
 		printf("\x1b[0;31mWrong type of action.\n");
+		exit(EXIT_FAILURE);
+	}
 }

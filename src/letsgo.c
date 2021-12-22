@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/21 21:59:45 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:26:47 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,24 @@ void	*philo_life(void *data)
 	t_philarg	*philo;
 
 	philo = (t_philarg *)data;
-	if (philo->num % 2 == 0)
+	if (philo->id % 2 == 0)
 		ft_usleep(100);
-	// philo->lastmeal = timeofday();
-	// philo->start = timeofday();
+	philo->start_meal = timeofday();
 	if (!philo->data->isdead)
 	{
 		eating(data);
 		sleeping(data);
 		thinking(data);
 	}
+	else
+		message(data, DIED); //needed?
 	return (NULL);
 }
+
+// void	monitoring(t_data *data)
+// {
+
+// }
 
 void	process(t_data *data)
 {
@@ -46,10 +52,12 @@ void	process(t_data *data)
 
 	i = 0;
 	philo = (t_philarg *)data->philo;
-	data->prog_st = timeofday();
+	data->prog_start = timeofday();
+
 	while (i < data->philo_num)
 	{
-		pthread_create(&data->philos[i], NULL, philo_life, &data->philo[i]);
+		pthread_create(&data->philo_tr[i], NULL, philo_life, &data->philo[i]);
 		i++;
 	}
+	
 }

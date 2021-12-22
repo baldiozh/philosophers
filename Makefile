@@ -26,7 +26,7 @@ OBJ				= $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
 # Compile
 CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror -g
+CFLAGS 	= -Wall -Werror -Wextra -g
 
 # Colors
 GREEN 	= \x1b[0;32m
