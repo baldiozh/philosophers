@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/22 21:13:07 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:39:35 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ void	ft_putstr(char *str);
 void	error(char *str);
 long	timeofday(void);
 void	ft_usleep(int ms);
-void	message(t_data *data, int action);
+void	message(t_philarg *philo, int action);
 void*	hello(void *args);
 
 /* actions */
-void	sleeping(t_data *data);
-void	thinking(t_data *data);
-void	take_forks(t_data *data);
-void	eating(t_data *data);
+void	sleeping(t_philarg *philo);
+void	thinking(t_philarg *philo);
+void	take_forks(t_philarg *philo);
+void	eating(t_philarg *philo);
 
 /* let's go */
-void	*philo_life(void *data);
+void	*philo_life(void *arg);
 void	process(t_data *data);
 
 #endif

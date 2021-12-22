@@ -6,40 +6,40 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:25:35 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/22 21:08:47 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:40:39 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
 
-void	sleeping(t_data *data)
+void	sleeping(t_philarg *philo)
 {
-	message(data, SLEEP);
+	message(philo, SLEEP);
 }
 
-void	thinking(t_data *data)
+void	thinking(t_philarg *philo)
 {
-	message(data, THINK);
+	message(philo, THINK);
 }
 
-void	take_forks(t_data *data)
+void	take_forks(t_philarg *philo)
 {
 	// int	left_fork;
 	// int	right_fork;
 
-	// left_fork = data->philo->left_fork;
-	// right_fork = data->philo->right_fork;
-	// pthread_mutex_lock(&data->forks[left_fork]);
-	// pthread_mutex_lock(&data->forks[right_fork]);
-	message(data, TAKE_FORKS);
+	// left_fork = philo->left_fork;
+	// right_fork = philo->right_fork;
+	// pthread_mutex_lock(&philo->forks[left_fork]);
+	// pthread_mutex_lock(&philo->forks[right_fork]);
+	message(philo, TAKE_FORKS);
 }
 
-void	eating(t_data *data)
+void	eating(t_philarg *philo)
 {
 
-	// take_forks(data);
-	// pthread_mutex_lock(data->death_mutex);
-	data->philo->meals++; //add check if meals == meals_num later
-	message(data, EAT);
+	// take_forks(philo);
+	// pthread_mutex_lock(philo->death_mutex);
+	philo->meals++; //add check if meals == meals_num later
+	message(philo, EAT);
 }
