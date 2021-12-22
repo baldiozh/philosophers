@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/22 21:39:35 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/22 22:04:34 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define TAKE_FORKS 6
 # define EAT 7
 # define DIED 8
+# define TAKE 9
+# define PUT 10
 
 
 typedef struct s_data
@@ -78,7 +80,7 @@ void*	hello(void *args);
 /* actions */
 void	sleeping(t_philarg *philo);
 void	thinking(t_philarg *philo);
-void	take_forks(t_philarg *philo);
+void	forks(t_philarg *philo, int action);
 void	eating(t_philarg *philo);
 
 /* let's go */
