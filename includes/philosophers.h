@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/23 21:33:17 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/23 22:43:41 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ typedef struct s_data
 	int				teat;
 	int				tsleep;
 	int				meals_num; //if no arg for this then -1
-	int				prog_start;
+	unsigned long long int				prog_start;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*speak_mutex;
 	pthread_mutex_t	*death_mutex;
+	pthread_t		monitor;
 	pthread_t		philo_tr[200];
 	int				isdead; //1 if dead
 	struct s_philarg		*philo;
@@ -51,8 +52,7 @@ typedef struct s_philarg
 {
 	int				id;
 	int				meals;
-	time_t			start_meal;
-	time_t			last_meal;
+	unsigned long long int			last_meal;
 	int				left_fork;
 	int				right_fork;
 	t_data		*data;

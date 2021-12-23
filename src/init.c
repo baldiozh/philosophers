@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/23 20:23:53 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/23 22:31:29 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ void	init_data(int argc, char **argv, t_data *data)
 			data->teat < 0 || data->tsleep < 0 )
 		error(ERR_ARG);
 	init_mutexes(data);
+	data->isdead = 0;
 	data->philo = (t_philarg *)malloc(sizeof(t_philarg) * data->philo_num);
 	if (!data->philo)
 		error(ERR_MEMORY);
+
 }
 
 void	init_philarg(t_data *data)
@@ -64,7 +66,7 @@ void	init_philarg(t_data *data)
 	{
 		philo[i].id = i + 1;
 		philo[i].meals = 0;
-		philo[i].start_meal = timeofday(); //0!
+		philo[i].last_meal = 0;
 	    philo[i].left_fork = i;
 		philo[i].right_fork = i + 1;
 		if (i == data->philo_num - 1)
