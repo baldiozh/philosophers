@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:09:40 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/23 20:07:17 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/23 21:41:13 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	main(int argc, char **argv)
 		error(ERR_MEMORY);
 	init(argc, argv, data);
 	process(data);
+	monitoring(data);
 	while (1)
 	{
 
 	}
-	terminate(data);
 	return(0);
 }

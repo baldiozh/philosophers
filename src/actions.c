@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:25:35 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/23 20:18:37 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/23 21:43:02 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	sleep_think(t_philarg *philo)
 {
 	message(philo, SLEEP);
+	ft_usleep(philo->data->tsleep);
 	message(philo, THINK);
 }
 
@@ -49,6 +50,7 @@ void	eating(t_philarg *philo)
 	philo->meals++; //add check if meals == meals_num later
 	message(philo, EAT);
 	pthread_mutex_unlock(philo->data->death_mutex);
+	philo->last_meal = timeofday();
 	forks(philo, PUT);
 	ft_usleep(philo->data->teat);
 	sleep_think(philo);
