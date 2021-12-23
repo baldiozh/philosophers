@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/22 19:00:29 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/23 20:23:53 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_mutexes(t_data *data)
 	if (!data->speak_mutex)
 		error(ERR_MEMORY);
 	pthread_mutex_init(data->speak_mutex, NULL);
-	data->death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 2);
+	data->death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 2); //2?
 	pthread_mutex_init(data->death_mutex, NULL);
 }
 
@@ -62,7 +62,7 @@ void	init_philarg(t_data *data)
 		error(ERR_MEMORY);
 	while(i < data->philo_num)
 	{
-		philo[i].id = i;
+		philo[i].id = i + 1;
 		philo[i].meals = 0;
 		philo[i].start_meal = timeofday(); //0!
 	    philo[i].left_fork = i;
