@@ -6,22 +6,19 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:25:35 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/22 22:05:35 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/23 20:10:47 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
 
-void	sleeping(t_philarg *philo)
+void	sleep_think(t_philarg *philo)
 {
 	message(philo, SLEEP);
-}
-
-void	thinking(t_philarg *philo)
-{
 	message(philo, THINK);
 }
+
 
 void	forks(t_philarg *philo, int action)
 {
@@ -33,8 +30,9 @@ void	forks(t_philarg *philo, int action)
 	if (action == TAKE)
 	{
 		pthread_mutex_lock(&philo->data->forks[left_fork]);
+		message(philo, TAKE_FORK);
 		pthread_mutex_lock(&philo->data->forks[right_fork]);
-		message(philo, TAKE_FORKS);
+		message(philo, TAKE_FORK);
 	}
 	else if (action == PUT)
 	{
@@ -52,5 +50,5 @@ void	eating(t_philarg *philo)
 	message(philo, EAT);
 	pthread_mutex_unlock(philo->data->death_mutex);
 	forks(philo, PUT);
-	sleeping(philo);
+	sleep_think(philo);
 }

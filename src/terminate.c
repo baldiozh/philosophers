@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   terminate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 18:09:40 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/23 20:07:17 by gmckinle         ###   ########.fr       */
+/*   Created: 2021/12/23 19:50:23 by gmckinle          #+#    #+#             */
+/*   Updated: 2021/12/23 20:06:45 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	main(int argc, char **argv)
+void	terminate(t_data *data)
 {
-	t_data	*data;
+	int	i;
 
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		error(ERR_MEMORY);
-	init(argc, argv, data);
-	process(data);
-	while (1)
-	{
+	i = 0;
+	while(i++ < data->philo_num)
+		pthread_detach(data->philo_tr[i]);
 
-	}
-	terminate(data);
-	return(0);
+	while(i-- > 0)
+		pthread_mutex_destroy(&data->forks[i]);
+	pthread_mutex_destroy(data->speak_mutex);
+	pthread_mutex_destroy(data->death_mutex);
 }

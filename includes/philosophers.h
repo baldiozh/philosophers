@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/22 22:04:34 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/23 20:10:29 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define ERR_MEMORY		"\x1b[0;31mMemory allocation error.\n"
 # define SLEEP 4
 # define THINK 5
-# define TAKE_FORKS 6
+# define TAKE_FORK 6
 # define EAT 7
 # define DIED 8
 # define TAKE 9
@@ -78,14 +78,15 @@ void	message(t_philarg *philo, int action);
 void*	hello(void *args);
 
 /* actions */
-void	sleeping(t_philarg *philo);
-void	thinking(t_philarg *philo);
+void	sleep_think(t_philarg *philo);
 void	forks(t_philarg *philo, int action);
 void	eating(t_philarg *philo);
 
 /* let's go */
 void	*philo_life(void *arg);
 void	process(t_data *data);
+
+void	terminate(t_data *data);
 
 #endif
 

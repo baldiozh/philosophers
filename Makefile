@@ -13,7 +13,8 @@ SRC_DIR			= ./src/
 #SRC_BONUS_DIR	= ./src_bonus/
 SRC_LIST		= main.c \
 				ft_atoi.c ft_putstr.c \
-				init.c letsgo.c utils.c actions.c
+				init.c letsgo.c actions.c utils.c \
+				terminate.c
 
 # SRC_BONUS_LIST = main.c init.c utils.c ft_atoi.c
 SRC 			= $(addprefix $(SRC_DIR), $(SRC_LIST))
