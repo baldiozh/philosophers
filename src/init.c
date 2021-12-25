@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/23 22:31:29 by gmckinle         ###   ########.fr       */
+/*   Updated: 2021/12/24 17:13:05 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	init_data(int argc, char **argv, t_data *data)
 		error(ERR_ARG);
 	init_mutexes(data);
 	data->isdead = 0;
+	data->eaten = 0;
 	data->philo = (t_philarg *)malloc(sizeof(t_philarg) * data->philo_num);
 	if (!data->philo)
 		error(ERR_MEMORY);
