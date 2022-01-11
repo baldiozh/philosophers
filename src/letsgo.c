@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/11 17:43:17 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/11 19:07:44 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	*philo_life(void *data)
 		ft_usleep(100);
 	if (!philo->data->isdead)
 		eating(data);
-	// else
-	// 	message(data, DIED); //needed?
+	// // else
+	// // 	message(data, DIED); //needed?
 	pthread_create(&philo->data->monitor, NULL, death_check, &philo[philo->id]);
 	return (NULL);
 }
@@ -44,7 +44,7 @@ void	*death_check(void *data)
 	{
 		philo->data->isdead = 1;
 		message(philo, DIED);
-		// terminate(data);
+		terminate(data);
 	}
 	return (NULL);
 }

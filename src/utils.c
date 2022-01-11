@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/23 21:12:23 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/11 19:09:07 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	message(t_philarg *philo, int action)
 	int	timestamp;
 
 	current_time = timeofday();
+	printf("%d\n", philo->id);
 	timestamp = current_time - philo->data->prog_start;
 	if (action == SLEEP)
 		printf("%d ms	%d	is sleeping\n", timestamp, philo->id);
