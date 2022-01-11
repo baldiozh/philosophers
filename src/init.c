@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/11 19:11:54 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/11 19:44:07 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	init_philarg(t_data *data)
 
 void	init(int argc, char **argv, t_data *data)
 {
-	(void)data;
-	(void)argv;
 	if (argc < 5 || argc > 6)
 		error(ERR_ARG);
 	init_data(argc, argv, data);
