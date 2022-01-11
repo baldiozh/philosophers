@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:09:40 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/25 19:03:55 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/11 17:51:02 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
+	(void)argc;
+	(void)argv;
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		error(ERR_MEMORY);
 	init(argc, argv, data);
-	process(data);
-	monitoring(data);
+	// process(data);
+	// monitoring(data);
 	// death_check(data);
 	// while (1)
 	// {

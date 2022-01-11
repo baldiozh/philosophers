@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/25 18:47:23 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/11 18:02:02 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,8 @@ typedef struct s_data
 	int				meals_num; //if no arg for this then -1
 	unsigned long long int		prog_start;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	*speak_mutex;
-	pthread_mutex_t	*death_mutex;
 	pthread_t		monitor;
 	pthread_t		philo_tr[200];
-	int				eaten;
 	int				isdead; //1 if dead
 	struct s_philarg		*philo;
 }			t_data;
@@ -56,6 +53,8 @@ typedef struct s_philarg
 	unsigned long long int			last_meal;
 	int				left_fork;
 	int				right_fork;
+	pthread_mutex_t	*speak_mutex;
+	pthread_mutex_t	*death_mutex;
 	t_data		*data;
 
 }			t_philarg;
@@ -64,7 +63,6 @@ typedef struct s_philarg
 /* init */
 void	init(int argc, char **argv, t_data *data);
 void	init_data(int argc, char **argv, t_data *data);
-void	init_mutexes(t_data *data);
 void	init_philarg(t_data *data);
 
 /* libft */
