@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 17:38:28 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:53:47 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	*monitoring(void *data)
 		i = 0;
 		while (i < d->philo_num)
 		{
-			printf("----------%p\n", d->philo->death_mutex);
-			pthread_mutex_lock(d->philo->death_mutex);
+			printf("----------%p\n", d->philo[i].death_mutex);
+			pthread_mutex_lock(d->philo[i].death_mutex);
 			death_check(d);
 			if (d->isdead == 1)
 				terminate(d);
