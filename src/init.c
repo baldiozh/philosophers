@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 17:30:40 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 21:55:06 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_data(int argc, char **argv, t_data *data)
 		error(ERR_MEMORY);
 	while (i++ < data->philo_num)
 		pthread_mutex_init(&data->forks[i], NULL);
+	pthread_mutex_init(&data->speak_mutex, NULL);
 	data->philo = (t_philarg *)malloc(sizeof(t_philarg) * (data->philo_num + 1));
 	if (!data->philo)
 		error(ERR_MEMORY);
@@ -46,6 +47,15 @@ void	init_philarg(t_data *data)
 
 	i = 0;
 	philo = (t_philarg *)data->philo;
+	// printf("--- %d\n", data->philo_num);
+	while(i < data->philo_num)
+	{
+		philo[i].death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_num); //2?
+		i++;
+	}
+	i = 0;
+	if (!philo->death_mutex)
+		error(ERR_MEMORY);
 	while(i < data->philo_num)
 	{
 		philo[i].id = i + 1;
@@ -57,14 +67,9 @@ void	init_philarg(t_data *data)
 			philo[i].right_fork = 0;
 		philo[i].data = data;
 		data->philo[i] = philo[i];
+		pthread_mutex_init(philo[i].death_mutex, NULL);
 		i++;
 	}
-	philo->speak_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 2);
-	if (!philo->speak_mutex)
-		error(ERR_MEMORY);
-	pthread_mutex_init(philo->speak_mutex, NULL);
-	philo->death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 2); //2?
-	pthread_mutex_init(philo->death_mutex, NULL);
 }
 
 
