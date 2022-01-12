@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 15:09:14 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 15:18:11 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	*philo_life(void *data)
 {
-	t_philarg	*philo;
+	t_data	*d;
 
-	philo = (t_philarg *)data;
-	if (philo->id % 2 == 0)
+	d = (t_data *)data;
+	if (d->philo->id % 2 == 0)
 		ft_usleep(100);
-	if (!philo->data->isdead)
-		eating(data);
+	if (!d->isdead)
+		eating(d->philo);
 	else
-		message(data, DIED); //needed?
-	monitoring(data);
+		message(d->philo, DIED); //needed?
+	// monitoring(d);
 	return (NULL);
 }
 
@@ -55,10 +55,9 @@ void	monitoring(t_data *data)
 		while (i++ < data->philo_num)
 		{
 			pthread_mutex_lock(data->philo[i].death_mutex);
+			death_check(data);
 			if (data->isdead == 1)
 				terminate(data);
-
-			pthread_create(&data->monitor, NULL, death_check, &data->philo[i]);
 		}
 	}
 }
@@ -73,4 +72,6 @@ void	process(t_data *data)
 	data->prog_start = (int)timeofday();
 	while (i++ < data->philo_num)
 		pthread_create(&data->philo_tr[i - 1], NULL, philo_life, &data->philo[i]);
+	// pthread_create(&data->monitor, NULL, death_check, &data->philo[i]);
+	monitoring(data);
 }
