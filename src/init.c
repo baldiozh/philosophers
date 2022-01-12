@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 21:55:06 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 22:07:24 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ void	init_philarg(t_data *data)
 
 	i = 0;
 	philo = (t_philarg *)data->philo;
-	// printf("--- %d\n", data->philo_num);
 	while(i < data->philo_num)
 	{
-		philo[i].death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_num); //2?
+		philo[i].death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_num);
+		if (!philo[i].death_mutex)
+			error(ERR_MEMORY);
 		i++;
 	}
 	i = 0;
