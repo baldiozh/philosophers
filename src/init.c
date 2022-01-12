@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/11 19:44:07 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 14:42:33 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,9 @@ void	init_data(int argc, char **argv, t_data *data)
 		error(ERR_MEMORY);
 	while (i++ < data->philo_num)
 		pthread_mutex_init(&data->forks[i], NULL);
-	printf("%d\n", data->philo_num);
 	data->philo = (t_philarg *)malloc(sizeof(t_philarg) * (data->philo_num + 1));
 	if (!data->philo)
 		error(ERR_MEMORY);
-	printf("end!\n");
 }
 
 void	init_philarg(t_data *data)
@@ -47,14 +45,13 @@ void	init_philarg(t_data *data)
 	int		i;
 
 	i = 0;
-	philo = data->philo;
-	// philo = malloc(sizeof(t_philarg) * data->philo_num);
+	philo = (t_philarg *)data->philo;
+	// philo = malloc(sizeof(t_philarg) * (data->philo_num + 1));
 	// if (!data->philo)
 	// 	error(ERR_MEMORY);
 	while(i < data->philo_num)
 	{
 		philo[i].id = i + 1;
-		printf("philo->id = %d\n",philo[i].id);
 		philo[i].meals = 0;
 		philo[i].last_meal = 0;
 	    philo[i].left_fork = i;

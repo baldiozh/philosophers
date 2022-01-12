@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 19:50:23 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/11 17:31:43 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 14:28:02 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	terminate(t_data *data)
 {
+	(void)data;
 	int	i;
 
 	i = 0;
-	while(i < data->philo_num)
+	while(i++ < data->philo_num)
 		pthread_detach(data->philo_tr[i]);
 	pthread_detach(data->monitor);
 	while(i-- > 0)
