@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 14:57:23 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 15:09:14 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*philo_life(void *data)
 		eating(data);
 	else
 		message(data, DIED); //needed?
-	pthread_create(&philo->data->monitor, NULL, death_check, &philo[philo->id]);
+	monitoring(data);
 	return (NULL);
 }
 
@@ -45,7 +45,7 @@ void	*death_check(void *data)
 void	monitoring(t_data *data)
 {
 	(void)data;
-	int	i;
+	int	i = 0;
 
 	data->prog_start = timeofday();
 	while(1)
@@ -57,6 +57,8 @@ void	monitoring(t_data *data)
 			pthread_mutex_lock(data->philo[i].death_mutex);
 			if (data->isdead == 1)
 				terminate(data);
+
+			pthread_create(&data->monitor, NULL, death_check, &data->philo[i]);
 		}
 	}
 }
