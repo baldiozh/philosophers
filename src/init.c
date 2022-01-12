@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 14:42:33 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:30:40 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ void	init_philarg(t_data *data)
 
 	i = 0;
 	philo = (t_philarg *)data->philo;
-	// philo = malloc(sizeof(t_philarg) * (data->philo_num + 1));
-	// if (!data->philo)
-	// 	error(ERR_MEMORY);
 	while(i < data->philo_num)
 	{
 		philo[i].id = i + 1;

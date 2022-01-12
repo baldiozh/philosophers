@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 17:28:39 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:38:28 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,15 @@ void	*monitoring(void *data)
 	d->prog_start = timeofday();
 	while(1)
 	{
-		ft_usleep(100);
+		ft_usleep(100); //
 		i = 0;
 		while (i < d->philo_num)
 		{
-			pthread_mutex_lock(d->philo[i].death_mutex);
-			// death_check(d);
-			// if (d->isdead == 1)
-			// 	terminate(d);
+			printf("----------%p\n", d->philo->death_mutex);
+			pthread_mutex_lock(d->philo->death_mutex);
+			death_check(d);
+			if (d->isdead == 1)
+				terminate(d);
 			i++;
 		}
 	}
@@ -64,7 +65,6 @@ void	*monitoring(void *data)
 void	process(t_data *data)
 {
 	t_philarg	*philo;
-	// pthread_t	monitor;
 	int i;
 
 	i = 0;
@@ -76,8 +76,4 @@ void	process(t_data *data)
 		i++;
 	}
 	monitoring(data);
-	while(1)
-	{
-
-	}
 }
