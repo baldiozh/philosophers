@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 17:28:45 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 20:49:19 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_data(int argc, char **argv, t_data *data)
 	if (data->philo_num < 1 || data->tdeath < 0 ||
 			data->teat < 0 || data->tsleep < 0 )
 		error(ERR_ARG);
-	data->isdead = 0;
+	data->stop = 0;
 	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (data->philo_num));
 	if (!data->forks)
 		error(ERR_MEMORY);

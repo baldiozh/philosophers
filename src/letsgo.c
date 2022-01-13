@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 19:02:06 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 21:43:10 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,43 +19,37 @@ void	*philo_life(void *data)
 	philo = (t_philarg *)data;
 	if (philo->id % 2 == 0)
 		sleep_think(philo);
-	while(!philo->data->isdead)
+	while(!philo->data->stop)
 		eating(philo);
 	return (NULL);
 }
 
-void	*death_check(void *data)
+int	death_check(t_data *data)
 {
-	t_data	*d;
-
-	d = (t_data *)data;
-	if ((long long)(timeofday() - d->philo->last_meal) > d->tdeath)
+	if ((long long)(timeofday() - data->philo->last_meal) > data->tdeath)
 	{
-		d->isdead = 1;
-		message(d->philo, DIED);
-		terminate(d);
+		printf("death_check\n");
+		data->stop = 1;
+		message(data->philo, DIED);
+		return (1);
 	}
-	return (NULL);
+	return (0);
 }
 
-void	*monitoring(void *data)
+void	monitoring(t_data *data)
 {
 	int	i = 0;
-	t_data		*d;
 
-	d = (t_data *)data;
-	d->prog_start = timeofday();
-	while(1)
+	data->prog_start = timeofday();
+	while(data->stop != 1)
 	{
 		ft_usleep(100);
 		i = 0;
-		while (i < d->philo_num)
+		while (i < data->philo_num && data->stop != 1)
 		{
-			pthread_mutex_lock(d->philo[i].death_mutex);
-			death_check(d);
-			if (!check_meals(d))
-				terminate(d);
-			pthread_mutex_unlock(d->philo[i].death_mutex);
+			pthread_mutex_lock(data->philo[i].death_mutex);
+			death_check(data);
+			pthread_mutex_unlock(data->philo[i].death_mutex);
 			i++;
 		}
 	}

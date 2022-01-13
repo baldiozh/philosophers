@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 16:37:35 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 20:50:42 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	speak_mutex;
 	pthread_t		philo_tr[200];
-	int				isdead; //1 if dead
+	int				stop; //1 if prog need to stop
 	struct s_philarg		*philo;
 }			t_data;
 
@@ -83,8 +83,8 @@ void	eating(t_philarg *philo);
 /* let's go */
 void	*philo_life(void *arg);
 void	process(t_data *data);
-void	*monitoring(void *data);
-void	*death_check(void *data);
+void	monitoring(t_data *data);
+int		death_check(t_data *data);
 void	terminate(t_data *data);
 
 #endif
