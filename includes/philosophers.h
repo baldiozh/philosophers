@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 20:08:07 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:37:35 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_data
 	unsigned long long int		prog_start;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	speak_mutex;
-	// pthread_t		monitor;
 	pthread_t		philo_tr[200];
 	int				isdead; //1 if dead
 	struct s_philarg		*philo;
@@ -74,7 +73,7 @@ void	error(char *str);
 long	timeofday(void);
 void	ft_usleep(int ms);
 void	message(t_philarg *philo, int action);
-void*	hello(void *args);
+int		check_meals(t_data *data);
 
 /* actions */
 void	sleep_think(t_philarg *philo);

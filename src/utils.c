@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/12 17:22:18 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:39:29 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,18 @@ void	message(t_philarg *philo, int action)
 		printf("\x1b[0;31mWrong type of action.\n");
 		exit(EXIT_FAILURE);
 	}
+}
+
+int	check_meals(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while(i < data->philo_num)
+	{
+		if(data->philo[i].meals < data->meals_num)
+			return (1);
+		i++;
+	}
+	return (0);
 }
