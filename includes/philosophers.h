@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 20:50:42 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 21:58:00 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_philarg
 	int				left_fork;
 	int				right_fork;
 	pthread_mutex_t	*death_mutex;
-	t_data		*data;
+	t_data			*data;
 
 }			t_philarg;
 
@@ -85,7 +85,7 @@ void	*philo_life(void *arg);
 void	process(t_data *data);
 void	monitoring(t_data *data);
 int		death_check(t_data *data);
-void	terminate(t_data *data);
+void	terminate(t_data *data, t_philarg *philo);
 
 #endif
 

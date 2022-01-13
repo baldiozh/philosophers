@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:25:35 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 21:47:50 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 21:58:13 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	forks(t_philarg *philo, int action)
 void	eating(t_philarg *philo)
 {
 	if (philo->data->stop)
-		terminate(philo->data);
+		terminate(philo->data, philo);
 	else
 	{
 		forks(philo, TAKE);
