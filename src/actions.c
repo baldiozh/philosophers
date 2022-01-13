@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:25:35 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 16:32:20 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 17:44:44 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,28 @@ void	forks(t_philarg *philo, int action)
 	right_fork = philo->right_fork;
 	if (action == TAKE)
 	{
-		pthread_mutex_lock(&philo->data->forks[left_fork]);
+		pthread_mutex_lock(&(philo->data->forks[left_fork]));
 		message(philo, TAKE_FORK);
-		pthread_mutex_lock(&philo->data->forks[right_fork]);
+		pthread_mutex_lock(&(philo->data->forks[right_fork]));
 		message(philo, TAKE_FORK);
 	}
 	else if (action == PUT)
 	{
-		pthread_mutex_unlock(&philo->data->forks[right_fork]);
-		pthread_mutex_unlock(&philo->data->forks[left_fork]);
+		pthread_mutex_unlock(&(philo->data->forks[right_fork]));
+		pthread_mutex_unlock(&(philo->data->forks[left_fork]));
 	}
 }
 
 void	eating(t_philarg *philo)
 {
 	forks(philo, TAKE);
+	//check isdead
 	pthread_mutex_lock(philo->death_mutex);
 	philo->meals++;
+	philo->last_meal = timeofday();
+	pthread_mutex_unlock(philo->death_mutex);
 	message(philo, EAT);
 	ft_usleep(philo->data->teat);
-	pthread_mutex_unlock(philo->death_mutex);
-	philo->last_meal = timeofday();
 	forks(philo, PUT);
 	sleep_think(philo);
 }
