@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 19:18:28 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 21:47:20 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	message(t_philarg *philo, int action)
 	else if (action == THINK)
 		printf("%d ms	%d	is thinking\n", timestamp, philo->id);
 	else if (action == TAKE_FORK)
-		printf("%d ms	%d	has taken a fork %d %d\n", timestamp, philo->id, philo->left_fork, philo->right_fork);
+		printf("%d ms	%d	has taken a fork\n", timestamp, philo->id); //printf("%d ms	%d	has taken a fork %d %d\n", timestamp, philo->id, philo->left_fork, philo->right_fork);
 	else if (action == EAT)
 		printf("%d ms	%d	is eating\n", timestamp, philo->id);
 	else if (action == DIED)
