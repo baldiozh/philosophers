@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 17:12:41 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 19:18:28 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,16 @@ int	check_meals(t_data *data)
 	int	i;
 
 	i = 0;
-	while(i < data->philo_num)
+	if (data->meals_num != -1)
 	{
-		if(data->philo[i].meals < data->meals_num)
-			return (1);
-		i++;
+		while(i < data->philo_num)
+		{
+			if(data->philo[i].meals < data->meals_num)
+				return (1);
+			i++;
+		}
+		return(0);
 	}
-	return (0);
+	else
+		return (1);
 }
