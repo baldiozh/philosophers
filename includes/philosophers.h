@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 21:58:00 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 22:49:45 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 
 # define ERR_ARG		"\x1b[0;31mEnter number of philosophers, time to death, time to eat, time to sleep.\n"
 # define ERR_MEMORY		"\x1b[0;31mMemory allocation error.\n"
-# define SLEEP 4
-# define THINK 5
-# define TAKE_FORK 6
-# define EAT 7
-# define DIED 8
+# define SLEEP 			"is sleeping"
+# define THINK			"is thinking"
+# define TAKE_FORK		"has taken fork"
+# define EAT			"is eating"
+# define DIED			"died\n"
 # define TAKE 9
 # define PUT 10
 
@@ -72,7 +72,7 @@ void	ft_putstr(char *str);
 void	error(char *str);
 long	timeofday(void);
 void	ft_usleep(int ms);
-void	message(t_philarg *philo, int action);
+void	message(t_philarg *philo, char *action);
 int		check_meals(t_data *data);
 
 /* actions */

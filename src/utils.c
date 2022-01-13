@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 21:59:19 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 22:50:29 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,14 @@ void	ft_usleep(int ms)
 		usleep(ms * 3);
 }
 
-void	message(t_philarg *philo, int action)
+void	message(t_philarg *philo, char *action)
 {
-	int	current_time;
 	int	timestamp;
 
-	current_time = timeofday();
-	timestamp = current_time - philo->data->prog_start;
+	timestamp = timeofday() - philo->data->prog_start;
 	pthread_mutex_lock(&philo->data->speak_mutex);
-	if (action == SLEEP)
-		printf("%d ms	%d	is sleeping\n", timestamp, philo->id);
-	else if (action == THINK)
-		printf("%d ms	%d	is thinking\n", timestamp, philo->id);
-	else if (action == TAKE_FORK)
-		printf("%d ms	%d	has taken a fork\n", timestamp, philo->id); //printf("%d ms	%d	has taken a fork %d %d\n", timestamp, philo->id, philo->left_fork, philo->right_fork);
-	else if (action == EAT)
-		printf("%d ms	%d	is eating\n", timestamp, philo->id);
-	else if (action == DIED)
-		printf("%d ms	%d	died\n", timestamp, philo->id);
-	else
-	{
-		printf("\x1b[0;31mWrong type of action.\n");
-		exit(EXIT_FAILURE);
-	}
+	if (philo->data->stop == 0)
+		printf("%d ms	%d	%s\n", timestamp, philo->id, action);
 	pthread_mutex_unlock(&philo->data->speak_mutex);
 }
 
@@ -74,11 +59,13 @@ int	check_meals(t_data *data)
 		while(i < data->philo_num)
 		{
 			if(data->philo[i].meals < data->meals_num)
+				i++;
+			else
+			{
+				data->stop = 1;
 				return (1);
-			i++;
+			}
 		}
-		return(0);
 	}
-	else
-		return (1);
+	return (0);
 }
