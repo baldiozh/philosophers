@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 17:22:26 by gmckinle         ###   ########.fr       */
+/*   Created: 2022/01/14 17:22:13 by gmckinle          #+#    #+#             */
+/*   Updated: 2022/01/14 20:23:16 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../includes_bonus/philosophers_bonus.h"
 
 void	init_data(int argc, char **argv, t_data *data)
 {
@@ -29,53 +29,31 @@ void	init_data(int argc, char **argv, t_data *data)
 		|| data->teat < 0 || data->tsleep < 0)
 		error(ERR_ARG);
 	data->stop = 0;
-	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-			* (data->philo_num));
-	if (!data->forks)
-		error(ERR_MEMORY);
-	while (i < data->philo_num)
-		pthread_mutex_init(&(data->forks[i++]), NULL);
-	pthread_mutex_init(&(data->speak_mutex), NULL);
-	data->philo = (t_philarg *)malloc(sizeof(t_philarg) * (data->philo_num));
+	sem_unlink(FORKS);
+	sem_unlink(SPEAKLOCK);
+	data->forks = sem_open(FORKS, O_CREAT, 0777, data->philo_num);
+	data->speaklock = sem_open(SPEAKLOCK, O_CREAT, 0777, 1);
+	if(data->forks == SEM_FAILED || data->speaklock == SEM_FAILED)
+		error(ERR_SEM);
+	data->philo = (t_philarg *)malloc(sizeof(t_philarg) * data->philo_num);
 	if (!data->philo)
 		error(ERR_MEMORY);
-}
-
-void	init_death_mutexes(t_data *data, t_philarg *philo)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->philo_num)
-	{
-		philo[i].death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-				* 1);
-		if (!philo[i].death_mutex)
-			error(ERR_MEMORY);
-		i++;
-	}
 }
 
 void	init_philarg(t_data *data)
 {
 	t_philarg	*philo;
 	int			i;
-
+	
 	i = 0;
 	philo = (t_philarg *)data->philo;
-	init_death_mutexes(data, philo);
 	while (i < data->philo_num)
 	{
 		philo[i].id = i + 1;
 		philo[i].meals = 0;
-		philo[i].last_meal = 0;
-		philo[i].left_fork = i;
-		philo[i].right_fork = i + 1;
-		if (i == data->philo_num - 1)
-			philo[i].right_fork = 0;
+		philo[i].last_meal = timeofday();
 		philo[i].data = data;
 		data->philo[i] = philo[i];
-		pthread_mutex_init(philo[i].death_mutex, NULL);
 		i++;
 	}
 }

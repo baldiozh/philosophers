@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   terminate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 15:55:30 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 21:17:57 by gmckinle         ###   ########.fr       */
+/*   Created: 2022/01/14 20:14:58 by gmckinle          #+#    #+#             */
+/*   Updated: 2022/01/14 20:18:35 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes_bonus/philosophers_bonus.h"
+#include "philosophers_bonus.h"
 
-int	main(int argc, char **argv)
+void	terminate(t_data *data, t_philarg *philo)
 {
-	t_data	*data;
+	int	i;
 
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		error(ERR_MEMORY);
-	init(argc, argv, data);
-	start_process(data);
-
+	i = 0;
+	while (i < data->philo_num)
+		//process
+	sem_close(data->forks);
+	sem_unlink(FORKS);
+	sem_close(data->speaklock);
+	sem_unlink(SPEAKLOCK);
+	free(philo);
+	free(data);
 }

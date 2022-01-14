@@ -4,14 +4,14 @@ NAME			= philo_bonus
 INCLUDES		= -I$(HEADERS_DIR)
 
 # Header files
-HEADERS_DIR		= includes_bonus/
-HEADERS_LIST	= philosophers.h
+HEADERS_DIR		= ./includes_bonus/
+HEADERS_LIST	= philosophers_bonus.h
 HEADERS			= $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
 # Sources
 SRC_DIR			= ./src_bonus/
 SRC_LIST		= main.c \
-				ft_atoi.c ft_putstr.c \
+				libft_utils.c \
 				init.c letsgo.c actions.c utils.c \
 				terminate.c
 SRC 			= $(addprefix $(SRC_DIR), $(SRC_LIST))

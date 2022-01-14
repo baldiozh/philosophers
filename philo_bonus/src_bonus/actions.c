@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 15:55:30 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 21:17:57 by gmckinle         ###   ########.fr       */
+/*   Created: 2022/01/14 21:18:26 by gmckinle          #+#    #+#             */
+/*   Updated: 2022/01/14 21:19:14 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes_bonus/philosophers_bonus.h"
+#include "philosophers_bonus.h"
 
-int	main(int argc, char **argv)
+void	sleep_think(t_philarg *philo)
 {
-	t_data	*data;
-
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		error(ERR_MEMORY);
-	init(argc, argv, data);
-	start_process(data);
-
+	
 }
