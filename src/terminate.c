@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 19:50:23 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 21:57:37 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/13 23:05:38 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	terminate(t_data *data, t_philarg *philo)
 		i--;
 	}
 	pthread_mutex_destroy(&data->speak_mutex);
-	
 	free(philo);
 	free(data);
 }
