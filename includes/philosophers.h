@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 15:00:21 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/14 15:05:14 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,42 @@
 # include <limits.h>
 # include <stdio.h>
 
-# define ERR_ARG		"\x1b[0;31mEnter number of philosophers, time to death, time to eat, time to sleep.\n"
-# define ERR_MEMORY		"\x1b[0;31mMemory allocation error.\n"
-# define SLEEP 			"is sleeping"
-# define THINK			"is thinking"
-# define TAKE_FORK		"has taken fork"
-# define EAT			"is eating"
-# define DIED			"died\n"
-# define TAKE 9
+# define ERR_ARG	"\x1b[0;31mEnter number of philos,time to:death,eat,sleep.\n"
+# define ERR_MEMORY	"\x1b[0;31mMemory allocation error.\n"
+# define SLEEP 		"is sleeping"
+# define THINK		"is thinking"
+# define TAKE_FORK	"has taken fork"
+# define EAT		"is eating"
+# define DIED		"died\n"
+# define TAKE
 # define PUT 10
-
 
 typedef struct s_data
 {
-	int				philo_num;
-	int				tdeath;
-	int				teat;
-	int				tsleep;
-	int				meals_num; //if no arg for this then -1
-	unsigned long long int		prog_start;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	speak_mutex;
-	pthread_t		philo_tr[200];
-	int				stop; //1 if prog need to stop
-	struct s_philarg		*philo;
+	int					philo_num;
+	int					tdeath;
+	int					teat;
+	int					tsleep;
+	int					meals_num;
+	long long int		prog_start;
+	pthread_mutex_t		*forks;
+	pthread_mutex_t		speak_mutex;
+	pthread_t			philo_tr[200];
+	int					stop;
+	struct s_philarg	*philo;
 }			t_data;
 
 typedef struct s_philarg
 {
-	int				id;
-	int				meals;
-	unsigned long long int			last_meal;
-	int				left_fork;
-	int				right_fork;
-	pthread_mutex_t	*death_mutex;
-	t_data			*data;
+	int						id;
+	int						meals;
+	long long int			last_meal;
+	int						left_fork;
+	int						right_fork;
+	pthread_mutex_t			*death_mutex;
+	t_data					*data;
 
 }			t_philarg;
-
 
 /* init */
 void	init(int argc, char **argv, t_data *data);
@@ -88,4 +86,3 @@ int		death_check(t_data *data);
 void	terminate(t_data *data, t_philarg *philo);
 
 #endif
-

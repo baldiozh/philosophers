@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 14:55:07 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/14 15:06:03 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*philo_life(void *data)
 	philo = (t_philarg *)data;
 	if (philo->id % 2 == 0)
 		sleep_think(philo);
-	while(!philo->data->stop)
+	while (!philo->data->stop)
 		eating(philo);
 	return (NULL);
 }
@@ -29,7 +29,8 @@ int	death_check(t_data *data)
 	if ((long long)(timeofday() - data->philo->last_meal) > data->tdeath)
 	{
 		data->stop = 1;
-		printf("%llu ms	%d	died\n", (timeofday() - data->prog_start), data->philo->id);
+		printf("%llu ms	%d	died\n",
+			(timeofday() - data->prog_start), data->philo->id);
 		return (1);
 	}
 	return (0);
@@ -37,9 +38,10 @@ int	death_check(t_data *data)
 
 void	monitoring(t_data *data)
 {
-	int	i = 0;
+	int	i;
 
-	while(data->stop != 1)
+	i = 0;
+	while (data->stop != 1)
 	{
 		i = 0;
 		check_meals(data);
@@ -57,7 +59,7 @@ void	monitoring(t_data *data)
 void	process(t_data *data)
 {
 	t_philarg	*philo;
-	int i;
+	int			i;
 
 	i = 0;
 	philo = (t_philarg *)data->philo;

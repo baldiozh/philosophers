@@ -6,12 +6,11 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:25:35 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 23:03:15 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/14 15:06:25 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
 
 void	sleep_think(t_philarg *philo)
 {
@@ -19,7 +18,6 @@ void	sleep_think(t_philarg *philo)
 	ft_usleep(philo->data->tsleep);
 	message(philo, THINK);
 }
-
 
 void	forks(t_philarg *philo, int action)
 {
@@ -48,7 +46,6 @@ void	eating(t_philarg *philo)
 		terminate(philo->data, philo);
 	else
 	{
-		// check_meals(philo->data);
 		forks(philo, TAKE);
 		pthread_mutex_lock(philo->death_mutex);
 		philo->meals++;

@@ -6,10 +6,9 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:36:32 by gmckinle          #+#    #+#             */
-/*   Updated: 2021/12/16 16:28:02 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/14 15:08:39 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/philosophers.h"
 

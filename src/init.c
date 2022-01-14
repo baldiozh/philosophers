@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/13 20:49:19 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/14 15:08:33 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ void	init_data(int argc, char **argv, t_data *data)
 		data->meals_num = ft_atoi(argv[5]);
 	else
 		data->meals_num = -1;
-	if (data->philo_num < 1 || data->tdeath < 0 ||
-			data->teat < 0 || data->tsleep < 0 )
+	if (data->philo_num < 1 || data->tdeath < 0
+		|| data->teat < 0 || data->tsleep < 0)
 		error(ERR_ARG);
 	data->stop = 0;
-	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (data->philo_num));
+	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* (data->philo_num));
 	if (!data->forks)
 		error(ERR_MEMORY);
 	while (i < data->philo_num)
@@ -43,13 +44,14 @@ void	init_data(int argc, char **argv, t_data *data)
 void	init_philarg(t_data *data)
 {
 	t_philarg	*philo;
-	int		i;
+	int			i;
 
 	i = 0;
 	philo = (t_philarg *)data->philo;
-	while(i < data->philo_num)
+	while (i < data->philo_num)
 	{
-		philo[i].death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_num);
+		philo[i].death_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+				* data->philo_num);
 		if (!philo[i].death_mutex)
 			error(ERR_MEMORY);
 		i++;
@@ -57,12 +59,12 @@ void	init_philarg(t_data *data)
 	i = 0;
 	if (!philo->death_mutex)
 		error(ERR_MEMORY);
-	while(i < data->philo_num)
+	while (i < data->philo_num)
 	{
 		philo[i].id = i + 1;
 		philo[i].meals = 0;
 		philo[i].last_meal = 0;
-	    philo[i].left_fork = i;
+		philo[i].left_fork = i;
 		philo[i].right_fork = i + 1;
 		if (i == data->philo_num - 1)
 			philo[i].right_fork = 0;
@@ -72,7 +74,6 @@ void	init_philarg(t_data *data)
 		i++;
 	}
 }
-
 
 void	init(int argc, char **argv, t_data *data)
 {
