@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 15:55:30 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 16:01:49 by gmckinle         ###   ########.fr       */
+/*   Created: 2022/01/14 16:50:48 by gmckinle          #+#    #+#             */
+/*   Updated: 2022/01/14 16:51:41 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/philosophers_bonus.h"
 
-int	main(int argc, char **argv)
+void	error(char *str)
 {
-	t_data	*data;
+	ft_putstr(str);
+	exit(EXIT_FAILURE);
+}
 
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		error(ERR_MEMORY);
-	init(argc, argv, data);
-	
+void	message(t_philarg *philo, char *action)
+{
+	int	timestamp;
+
+	timestamp = timeofday() - philo->data->prog_start;
+	if (philo->data->stop == 0)
+		printf("%d ms	%d	%s\n", timestamp, philo->id, action);
 }

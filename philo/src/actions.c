@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:25:35 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 15:06:25 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/14 17:13:39 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ void	eating(t_philarg *philo)
 	else
 	{
 		forks(philo, TAKE);
-		pthread_mutex_lock(philo->death_mutex);
 		philo->meals++;
 		philo->last_meal = timeofday();
-		pthread_mutex_unlock(philo->death_mutex);
 		message(philo, EAT);
 		ft_usleep(philo->data->teat);
 		forks(philo, PUT);

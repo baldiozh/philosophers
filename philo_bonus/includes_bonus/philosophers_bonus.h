@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:56:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 15:57:22 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:10:48 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct s_data
 	int					tsleep;
 	int					meals_num;
 	long long int		prog_start;
-	pthread_mutex_t		*forks;
-	pthread_mutex_t		speak_mutex;
 	int					stop;
 	struct s_philarg	*philo;
 }			t_data;
@@ -51,7 +49,6 @@ typedef struct s_philarg
 	long long int			last_meal;
 	int						left_fork;
 	int						right_fork;
-	pthread_mutex_t			*death_mutex;
 	t_data					*data;
 
 }			t_philarg;
