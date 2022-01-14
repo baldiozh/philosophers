@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philosophers_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 15:05:14 by gmckinle         ###   ########.fr       */
+/*   Created: 2022/01/14 15:56:26 by gmckinle          #+#    #+#             */
+/*   Updated: 2022/01/14 15:57:22 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILOSOPHERS_BONUS_H
+# define PHILOSOPHERS_BONUS_H
 
 # include <sys/time.h>
 # include <pthread.h>
@@ -20,14 +20,14 @@
 # include <limits.h>
 # include <stdio.h>
 
-# define ERR_ARG	"\x1b[0;31mEnter number of philos,time to:death,eat,sleep.\n"
+# define ERR_ARG	"\x1b[0;31mNumber of philosophers, tdeath, teat, tsleep.\n"
 # define ERR_MEMORY	"\x1b[0;31mMemory allocation error.\n"
 # define SLEEP 		"is sleeping"
 # define THINK		"is thinking"
 # define TAKE_FORK	"has taken fork"
 # define EAT		"is eating"
 # define DIED		"died\n"
-# define TAKE
+# define TAKE 9
 # define PUT 10
 
 typedef struct s_data
@@ -40,7 +40,6 @@ typedef struct s_data
 	long long int		prog_start;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		speak_mutex;
-	pthread_t			philo_tr[200];
 	int					stop;
 	struct s_philarg	*philo;
 }			t_data;
@@ -67,22 +66,12 @@ int		ft_atoi(const char *str);
 void	ft_putstr(char *str);
 
 /* utils */
-void	error(char *str);
-long	timeofday(void);
-void	ft_usleep(int ms);
-void	message(t_philarg *philo, char *action);
-int		check_meals(t_data *data);
+
 
 /* actions */
-void	sleep_think(t_philarg *philo);
-void	forks(t_philarg *philo, int action);
-void	eating(t_philarg *philo);
+
 
 /* let's go */
-void	*philo_life(void *arg);
-void	process(t_data *data);
-void	monitoring(t_data *data);
-int		death_check(t_data *data);
-void	terminate(t_data *data, t_philarg *philo);
+
 
 #endif
