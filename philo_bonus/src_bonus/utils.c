@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:50:48 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 21:38:36 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 18:09:14 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ long	timeofday(void)
 	return (res);
 }
 
-void	ft_usleep(int ms)
+void	ft_usleep(int ms) //check this
 {
 	long	time;
 
@@ -44,7 +44,7 @@ void	message(t_philarg *philo, char *action)
 
 	timestamp = timeofday() - philo->data->prog_start;
 	if (philo->data->stop == 0)
-		printf("%d ms	%d	%s\n", timestamp, philo->id, action);
+		printf("%d	%d	%s\n", timestamp, philo->id, action);
 }
 
 int	check_meals(t_data *data)

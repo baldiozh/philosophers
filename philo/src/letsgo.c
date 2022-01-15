@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:12:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 15:06:03 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:31:22 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	death_check(t_data *data)
 	if ((long long)(timeofday() - data->philo->last_meal) > data->tdeath)
 	{
 		data->stop = 1;
-		printf("%llu ms	%d	died\n",
+		printf("%llu %d died\n",
 			(timeofday() - data->prog_start), data->philo->id);
 		return (1);
 	}
@@ -56,7 +56,7 @@ void	monitoring(t_data *data)
 	}
 }
 
-void	process(t_data *data)
+void	run_threads(t_data *data)
 {
 	t_philarg	*philo;
 	int			i;

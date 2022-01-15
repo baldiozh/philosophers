@@ -6,13 +6,13 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 21:18:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 21:19:14 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 15:40:39 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-void	sleep_think(t_philarg *philo)
-{
-	
-}
+// void	sleep_think(t_philarg *philo)
+// {
+
+// }

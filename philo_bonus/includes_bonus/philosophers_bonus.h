@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:56:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 21:38:45 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 18:17:53 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_data
 	int					meals_num;
 	long long int		prog_start;
 	sem_t				*forks;
-	sem_t				speaklock;
+	sem_t				*speaklock;
 	pid_t				pids[200];
 	int					stop;
 	struct s_philarg	*philo;
@@ -59,7 +59,7 @@ typedef struct s_philarg
 	int						id;
 	int						meals;
 	long long int			last_meal;
-	// sem_t					*deathlock;
+	sem_t					*deathlock;
 	t_data					*data;
 
 }			t_philarg;
@@ -67,7 +67,6 @@ typedef struct s_philarg
 /* init */
 void	init(int argc, char **argv, t_data *data);
 void	init_data(int argc, char **argv, t_data *data);
-void	init_philarg(t_data *data);
 
 /* libft */
 int		ft_atoi(const char *str);
@@ -85,6 +84,7 @@ int		check_meals(t_data *data);
 
 /* let's go */
 void	start_process(t_data *data);
+void	init_child_process(t_data *data, int id);
 int		death_check(t_data *data);
 
 #endif

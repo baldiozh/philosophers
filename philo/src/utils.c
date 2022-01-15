@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 17:17:46 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:30:20 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	message(t_philarg *philo, char *action)
 	timestamp = timeofday() - philo->data->prog_start;
 	pthread_mutex_lock(&philo->data->speak_mutex);
 	if (philo->data->stop == 0)
-		printf("%d ms	%d	%s\n", timestamp, philo->id, action);
+		printf("%d %d %s\n", timestamp, philo->id, action);
 	pthread_mutex_unlock(&philo->data->speak_mutex);
 }
 

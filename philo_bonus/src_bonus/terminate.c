@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:14:58 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 20:18:35 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/14 22:33:06 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	terminate(t_data *data, t_philarg *philo)
 
 	i = 0;
 	while (i < data->philo_num)
-		//process
+		;//process
 	sem_close(data->forks);
 	sem_unlink(FORKS);
 	sem_close(data->speaklock);

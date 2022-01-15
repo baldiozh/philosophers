@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 17:22:13 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 20:23:16 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 18:09:44 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,10 @@ void	init_data(int argc, char **argv, t_data *data)
 		error(ERR_MEMORY);
 }
 
-void	init_philarg(t_data *data)
-{
-	t_philarg	*philo;
-	int			i;
-	
-	i = 0;
-	philo = (t_philarg *)data->philo;
-	while (i < data->philo_num)
-	{
-		philo[i].id = i + 1;
-		philo[i].meals = 0;
-		philo[i].last_meal = timeofday();
-		philo[i].data = data;
-		data->philo[i] = philo[i];
-		i++;
-	}
-}
 
 void	init(int argc, char **argv, t_data *data)
 {
 	if (argc < 5 || argc > 6)
 		error(ERR_ARG);
 	init_data(argc, argv, data);
-	init_philarg(data);
 }
