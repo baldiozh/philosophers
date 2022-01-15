@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 17:22:13 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 18:09:44 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 20:21:45 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,21 @@ void	init_data(int argc, char **argv, t_data *data)
 		error(ERR_MEMORY);
 }
 
-
-void	init(int argc, char **argv, t_data *data)
+void	init_child_process(t_data *data, int id)
 {
-	if (argc < 5 || argc > 6)
-		error(ERR_ARG);
-	init_data(argc, argv, data);
+	char		*deathlock_name;
+	t_philarg	*philo;
+
+	philo = data->philo;
+	philo[id].id = id + 1;
+	printf("philo[id].id = %d\n", philo[id].id);
+	philo[id].meals = 0;
+	philo[id].last_meal = timeofday();
+	deathlock_name = ft_strjoin(DEATHLOCK, ft_itoa(id));
+	printf("%s\n", deathlock_name);
+	sem_unlink(deathlock_name);
+	philo[id].deathlock = sem_open(deathlock_name, O_CREAT, 0777, 1);
+	philo[id].data = data;
+	data->philo[id] = philo[id];
+
 }

@@ -11,7 +11,7 @@ HEADERS			= $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 # Sources
 SRC_DIR			= ./src_bonus/
 SRC_LIST		= main.c \
-				libft_utils.c \
+				ft_itoa.c ft_strjoin.c libft_utils.c \
 				init.c letsgo.c actions.c utils.c \
 				terminate.c
 SRC 			= $(addprefix $(SRC_DIR), $(SRC_LIST))

@@ -6,25 +6,11 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:27:41 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 18:41:07 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 19:55:21 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-
-void	init_child_process(t_data *data, int id)
-{
-	t_philarg *philo;
-
-	philo = data->philo;
-	philo[id].id = id;
-	printf("philo[id].id = %d\n", philo[id].id);
-	philo[id].meals = 0;
-	philo[id].last_meal = timeofday();
-	philo[id].data = data;
-	data->philo[id] = philo[id];
-
-}
 
 int	death_check(t_data *data)
 {
@@ -38,11 +24,13 @@ int	death_check(t_data *data)
 	return (0);
 }
 
-void	monitoring(t_data *data)
+void	monitoring(void *d)
 {
+	t_data	*data;
 	int	i;
 
 	i = 0;
+	data = (t_data *)d;
 	while (!data->stop)
 	{
 		i = 0;
@@ -58,14 +46,13 @@ void	start_process(t_data *data)
 
 	i = 0;
 	data->prog_start = timeofday();
-	printf("philo_num = %d\n", data->philo_num);
 	while (i < data->philo_num)
 	{
 		data->pids[i] = fork();
 		if (data->pids[i] == 0)
 		{
 			init_child_process(data, i);
-			// printf("my pid = %d\n", getpid());
+			printf("my pid = %d\n", getpid());
 			// monitoring(data);
 		}
 		else if (data->pids[i] == -1)

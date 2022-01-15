@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:56:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 18:17:53 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 20:18:44 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 
 # define FORKS		"/forks"
 # define SPEAKLOCK	"/speaklock"
-# define DEATHLOCK	"/deathlock"
+# define DEATHLOCK	"/deathlock_"
 
 typedef struct s_data
 {
@@ -65,12 +65,15 @@ typedef struct s_philarg
 }			t_philarg;
 
 /* init */
-void	init(int argc, char **argv, t_data *data);
 void	init_data(int argc, char **argv, t_data *data);
+void	init_child_process(t_data *data, int id);
 
 /* libft */
+size_t	ft_strlen(const char *str);
 int		ft_atoi(const char *str);
 void	ft_putstr(char *str);
+char	*ft_itoa(int n);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 /* utils */
 void	error(char *str);
@@ -84,7 +87,6 @@ int		check_meals(t_data *data);
 
 /* let's go */
 void	start_process(t_data *data);
-void	init_child_process(t_data *data, int id);
 int		death_check(t_data *data);
 
 #endif

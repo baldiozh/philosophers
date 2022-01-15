@@ -6,11 +6,21 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:13:51 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 20:14:23 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/15 20:17:21 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
+}
 
 void	ft_putstr(char *str)
 {
