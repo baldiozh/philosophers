@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 17:36:52 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:02:03 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	init_philarg(t_data *data);
 
 /* libft */
 int		ft_atoi(const char *str);
-void	ft_putstr(char *str);
+void	ft_putstr_fd(char *str, int fd);
 
 /* utils */
 void	error(char *str);

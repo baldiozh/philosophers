@@ -12,7 +12,7 @@ HEADERS			= $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 SRC_DIR			= ./src/
 #SRC_BONUS_DIR	= ./src_bonus
 SRC_LIST		= main.c \
-				ft_atoi.c ft_putstr.c \
+				ft_atoi.c ft_putstr_fd.c \
 				init.c letsgo.c actions.c utils.c \
 				terminate.c
 

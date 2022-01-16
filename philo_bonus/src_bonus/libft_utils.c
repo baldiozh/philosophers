@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:13:51 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 20:17:21 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:49:41 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr_fd(char *str, int fd)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ void	ft_putstr(char *str)
 		return ;
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		write(fd, &str[i], 1);
 		i++;
 	}
 }

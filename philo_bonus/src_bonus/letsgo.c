@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:27:41 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 18:40:45 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:07:40 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	start_process(t_data *data)
 
 	i = 0;
 	data->prog_start = timeofday();
-	while (i < data->philo_num )
+	while (i < data->philo_num)
 	{
 		data->pids[i] = fork();
 		if (data->pids[i] == 0)
@@ -76,5 +76,4 @@ void	start_process(t_data *data)
 			error(ERR_PID);
 		i++;
 	}
-
 }

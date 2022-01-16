@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:11:27 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/14 17:22:26 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:11:27 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	init_data(int argc, char **argv, t_data *data)
 	data->tdeath = ft_atoi(argv[2]);
 	data->teat = ft_atoi(argv[3]);
 	data->tsleep = ft_atoi(argv[4]);
+	data->meals_num = -1;
 	if (argc == 6)
 		data->meals_num = ft_atoi(argv[5]);
-	else
-		data->meals_num = -1;
-	if (data->philo_num < 1 || data->tdeath < 0
-		|| data->teat < 0 || data->tsleep < 0)
+	if (data->philo_num < 1 || data->tdeath <= 0
+		|| data->teat <= 0 || data->tsleep <= 0
+		|| (argc == 6 && data->meals_num <= 0))
 		error(ERR_ARG);
 	data->stop = 0;
 	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)

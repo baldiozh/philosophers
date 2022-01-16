@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 17:22:13 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 18:39:39 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:07:33 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_data(int argc, char **argv, t_data *data)
 	sem_unlink(SPEAKLOCK);
 	data->forks = sem_open(FORKS, O_CREAT, 0777, data->philo_num);
 	data->speaklock = sem_open(SPEAKLOCK, O_CREAT, 0777, 1);
-	if(data->forks == SEM_FAILED || data->speaklock == SEM_FAILED)
+	if (data->forks == SEM_FAILED || data->speaklock == SEM_FAILED)
 		error(ERR_SEM);
 }
 
@@ -51,5 +51,4 @@ void	init_child_process(t_data *data, t_philarg *philo, int i)
 	sem_unlink(philo[i].deathlock_name);
 	philo->deathlock = sem_open(philo->deathlock_name, O_CREAT, 0777, 1);
 	philo->data = data;
-
 }

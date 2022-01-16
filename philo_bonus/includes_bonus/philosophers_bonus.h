@@ -6,16 +6,16 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:56:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 18:38:47 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:10:24 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_BONUS_H
 # define PHILOSOPHERS_BONUS_H
 
-#include <fcntl.h>           /* For O_* constants */
-#include <sys/stat.h>        /* For mode constants */
-#include <semaphore.h>
+# include <fcntl.h>
+# include <sys/stat.h>
+# include <semaphore.h>
 # include <sys/time.h>
 # include <pthread.h>
 # include <unistd.h>
@@ -73,7 +73,7 @@ void	init_child_process(t_data *data, t_philarg *philo, int i);
 /* libft */
 size_t	ft_strlen(const char *str);
 int		ft_atoi(const char *str);
-void	ft_putstr(char *str);
+void	ft_putstr_fd(char *str, int fd);
 char	*ft_itoa(int n);
 char	*ft_strjoin(char const *s1, char const *s2);
 
@@ -90,9 +90,13 @@ void	forks(t_philarg *philo, int action);
 void	eating(t_philarg *philo);
 
 /* let's go */
+void	*monitoring(void *d);
+int		philo_life(t_data *data, int i);
 void	start_process(t_data *data);
 int		death_check(t_philarg *philo);
 
+/* end */
+void	stop(t_data *data);
 void	terminate(t_data *data);
 
 #endif

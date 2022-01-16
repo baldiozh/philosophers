@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:55:30 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 18:41:40 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:08:25 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	stop(t_data *data)
 {
-	int i = data->philo_num;
-	int status;
-	while(i)
+	int	i;
+	int	status;
+
+	i = data->philo_num;
+	while (i)
 	{
 		waitpid(0, &status, 0);
 		if (WEXITSTATUS(status) == EXIT_FAILURE)
@@ -29,7 +31,7 @@ void	stop(t_data *data)
 		--i;
 	}
 	i = 0;
-	while(i < data->philo_num)
+	while (i < data->philo_num)
 		waitpid(data->pids[i++], NULL, 0);
 }
 

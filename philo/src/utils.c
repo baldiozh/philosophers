@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:53:47 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 16:30:20 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:04:33 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error(char *str)
 {
-	ft_putstr(str);
+	ft_putstr_fd(str, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
