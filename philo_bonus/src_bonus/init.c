@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 17:22:13 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 20:21:45 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:39:39 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,27 @@ void	init_data(int argc, char **argv, t_data *data)
 		|| data->teat < 0 || data->tsleep < 0)
 		error(ERR_ARG);
 	data->stop = 0;
+	data->isdead = 0;
 	sem_unlink(FORKS);
 	sem_unlink(SPEAKLOCK);
 	data->forks = sem_open(FORKS, O_CREAT, 0777, data->philo_num);
 	data->speaklock = sem_open(SPEAKLOCK, O_CREAT, 0777, 1);
 	if(data->forks == SEM_FAILED || data->speaklock == SEM_FAILED)
 		error(ERR_SEM);
-	data->philo = (t_philarg *)malloc(sizeof(t_philarg) * data->philo_num);
-	if (!data->philo)
-		error(ERR_MEMORY);
 }
 
-void	init_child_process(t_data *data, int id)
+void	init_child_process(t_data *data, t_philarg *philo, int i)
 {
-	char		*deathlock_name;
-	t_philarg	*philo;
+	char		*num;
 
-	philo = data->philo;
-	philo[id].id = id + 1;
-	printf("philo[id].id = %d\n", philo[id].id);
-	philo[id].meals = 0;
-	philo[id].last_meal = timeofday();
-	deathlock_name = ft_strjoin(DEATHLOCK, ft_itoa(id));
-	printf("%s\n", deathlock_name);
-	sem_unlink(deathlock_name);
-	philo[id].deathlock = sem_open(deathlock_name, O_CREAT, 0777, 1);
-	philo[id].data = data;
-	data->philo[id] = philo[id];
+	philo->id = i + 1;
+	philo->meals = 0;
+	philo->last_meal = timeofday();
+	num = ft_itoa(i);
+	philo->deathlock_name = ft_strjoin(DEATHLOCK, num);
+	free(num);
+	sem_unlink(philo[i].deathlock_name);
+	philo->deathlock = sem_open(philo->deathlock_name, O_CREAT, 0777, 1);
+	philo->data = data;
 
 }

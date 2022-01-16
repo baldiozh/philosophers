@@ -6,38 +6,57 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:27:41 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 19:55:21 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:40:45 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	death_check(t_data *data)
+void	*monitoring(void *d)
 {
-	if ((long long)(timeofday() - data->philo->last_meal) > data->tdeath)
+	t_philarg	*philo;
+
+	philo = (t_philarg *)d;
+	while (!philo->data->stop && !philo->data->isdead)
 	{
-		data->stop = 1;
-		printf("%llu	%d	died\n",
-			(timeofday() - data->prog_start), data->philo->id);
+		sem_wait(philo->deathlock);
+		check_meals(philo);
+		death_check(philo);
+		sem_post(philo->deathlock);
+		usleep(500);
+	}
+	return (NULL);
+}
+
+int	philo_life(t_data *data, int i)
+{
+	pthread_t	monitor;
+	t_philarg	philo;
+
+	init_child_process(data, &philo, i);
+	pthread_create(&monitor, NULL, monitoring, &philo);
+	if (philo.id % 2 == 0)
+		sleep_think(&philo);
+	while (!data->stop && !data->isdead)
+		eating(&philo);
+	pthread_join(monitor, NULL);
+	sem_unlink(philo.deathlock_name);
+	free(philo.deathlock_name);
+	if (philo.data->isdead == 1)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+int	death_check(t_philarg *philo)
+{
+	if ((long long)(timeofday() - philo->last_meal) > philo->data->tdeath)
+	{
+		philo->data->isdead = 1;
+		printf("%llu %d died\n",
+			(timeofday() - philo->data->prog_start), philo->id);
 		return (1);
 	}
 	return (0);
-}
-
-void	monitoring(void *d)
-{
-	t_data	*data;
-	int	i;
-
-	i = 0;
-	data = (t_data *)d;
-	while (!data->stop)
-	{
-		i = 0;
-		check_meals(data);
-		death_check(data);
-		usleep(500);
-	}
 }
 
 void	start_process(t_data *data)
@@ -46,16 +65,14 @@ void	start_process(t_data *data)
 
 	i = 0;
 	data->prog_start = timeofday();
-	while (i < data->philo_num)
+	while (i < data->philo_num )
 	{
 		data->pids[i] = fork();
 		if (data->pids[i] == 0)
 		{
-			init_child_process(data, i);
-			printf("my pid = %d\n", getpid());
-			// monitoring(data);
+			exit(philo_life(data, i));
 		}
-		else if (data->pids[i] == -1)
+		if (data->pids[i] == -1)
 			error(ERR_PID);
 		i++;
 	}

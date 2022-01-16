@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:56:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 20:18:44 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:38:47 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdio.h>
+# include <signal.h>
 
 # define ERR_ARG	"\x1b[0;31mNumber of philosophers, tdeath, teat, tsleep.\n"
 # define ERR_MEMORY	"\x1b[0;31mMemory allocation error.\n"
@@ -29,7 +30,7 @@
 # define ERR_PID	"\x1b[0;31mProcess error.\n"
 # define SLEEP 		"is sleeping"
 # define THINK		"is thinking"
-# define TAKE_FORK	"has taken fork"
+# define TAKE_FORK	"has taken a fork"
 # define EAT		"is eating"
 # define DIED		"died\n"
 # define TAKE 9
@@ -51,7 +52,7 @@ typedef struct s_data
 	sem_t				*speaklock;
 	pid_t				pids[200];
 	int					stop;
-	struct s_philarg	*philo;
+	int					isdead;
 }			t_data;
 
 typedef struct s_philarg
@@ -59,6 +60,7 @@ typedef struct s_philarg
 	int						id;
 	int						meals;
 	long long int			last_meal;
+	char					*deathlock_name;
 	sem_t					*deathlock;
 	t_data					*data;
 
@@ -66,7 +68,7 @@ typedef struct s_philarg
 
 /* init */
 void	init_data(int argc, char **argv, t_data *data);
-void	init_child_process(t_data *data, int id);
+void	init_child_process(t_data *data, t_philarg *philo, int i);
 
 /* libft */
 size_t	ft_strlen(const char *str);
@@ -80,13 +82,17 @@ void	error(char *str);
 long	timeofday(void);
 void	ft_usleep(int ms);
 void	message(t_philarg *philo, char *action);
-int		check_meals(t_data *data);
+int		check_meals(t_philarg *philo);
 
 /* actions */
-
+void	sleep_think(t_philarg *philo);
+void	forks(t_philarg *philo, int action);
+void	eating(t_philarg *philo);
 
 /* let's go */
 void	start_process(t_data *data);
-int		death_check(t_data *data);
+int		death_check(t_philarg *philo);
+
+void	terminate(t_data *data);
 
 #endif

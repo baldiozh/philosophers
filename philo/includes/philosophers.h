@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 18:10:17 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/15 15:44:16 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/16 17:36:52 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define ERR_MEMORY	"\x1b[0;31mMemory allocation error.\n"
 # define SLEEP 		"is sleeping"
 # define THINK		"is thinking"
-# define TAKE_FORK	"has taken fork"
+# define TAKE_FORK	"has taken a fork"
 # define EAT		"is eating"
 # define DIED		"died\n"
 # define TAKE 9
