@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 21:18:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/17 20:13:49 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:38:50 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	forks(t_philarg *philo, int action)
 		{
 			sem_wait(philo->data->forks);
 			message(philo, TAKE_FORK);
+			if (philo->data->philo_num == 1)
+				while (!philo->data->isdead)
+					ft_usleep(philo->data->tdeath);
 		}
 		if (!philo->data->isdead && !philo->data->stop)
 		{
@@ -54,6 +57,4 @@ void	eating(t_philarg *philo)
 		sem_post(philo->deathlock);
 		forks(philo, PUT);
 	}
-	if (!philo->data->isdead && !philo->data->stop)
-		sleep_think(philo);
 }

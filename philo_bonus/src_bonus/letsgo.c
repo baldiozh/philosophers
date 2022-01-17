@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:27:41 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/17 20:16:54 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:46:37 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_meals(t_philarg *philo)
 {
 	if (philo->data->meals_num != -1)
 	{
-		if (philo->meals == philo->data->meals_num)
+		if (philo->meals >= philo->data->meals_num)
 		{
 			philo->data->stop = 1;
 			return (1);
@@ -30,6 +30,7 @@ int	death_check(t_philarg *philo)
 	if ((long long)(timeofday() - philo->last_meal) > philo->data->tdeath)
 	{
 		philo->data->isdead = 1;
+		sem_wait(philo->data->speaklock);
 		printf("%llu %d died\n",
 			(timeofday() - philo->data->prog_start), philo->id);
 		return (1);
@@ -45,14 +46,11 @@ void	*monitoring(void *d)
 	while (!philo->data->stop && !philo->data->isdead)
 	{
 		sem_wait(philo->deathlock);
-		if (check_meals(philo)|| death_check(philo))
+		if (death_check(philo))
 		{
-			printf("is dead = %d\n", philo->data->isdead);
 			stop(philo->data);
 			terminate(philo->data);
 		}
-		// check_meals(philo);
-		// death_check(philo);
 		sem_post(philo->deathlock);
 		usleep(500);
 	}
@@ -66,11 +64,14 @@ int	philo_life(t_data *data, int i)
 
 	init_child_process(data, &philo, i);
 	pthread_create(&monitor, NULL, monitoring, &philo);
-	if (philo.id % 2 == 0)
-		sleep_think(&philo);
 	while (!data->stop && !data->isdead)
 	{
-		eating(&philo);
+		if (!philo.data->isdead && !philo.data->stop)
+			eating(&philo);
+		if (check_meals(&philo))
+			return (EXIT_FAILURE);
+		if (!philo.data->isdead && !philo.data->stop)
+			sleep_think(&philo);
 	}
 	pthread_join(monitor, NULL);
 	sem_unlink(philo.deathlock_name);

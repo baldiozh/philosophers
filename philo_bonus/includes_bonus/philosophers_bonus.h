@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:56:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/17 20:08:43 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:31:55 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ int		death_check(t_philarg *philo);
 /* end */
 void	stop(t_data *data);
 void	terminate(t_data *data);
+void	force_terminate(t_data *data);
 
 #endif

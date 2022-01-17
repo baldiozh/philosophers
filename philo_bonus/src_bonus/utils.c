@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:50:48 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/17 20:14:51 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:35:58 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	message(t_philarg *philo, char *action)
 
 	timestamp = timeofday() - philo->data->prog_start;
 	sem_wait(philo->data->speaklock);
-	printf("%d %d %s\n", timestamp, philo->id, action);
+	if (!philo->data->isdead && !philo->data->stop)
+		printf("%d %d %s\n", timestamp, philo->id, action);
 	sem_post(philo->data->speaklock);
 }
