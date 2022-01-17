@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 15:56:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 20:10:24 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:08:43 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,18 @@ typedef struct s_data
 	sem_t				*forks;
 	sem_t				*speaklock;
 	pid_t				pids[200];
-	int					stop;
-	int					isdead;
+	volatile int		stop;	//
+	volatile int		isdead; //
 }			t_data;
 
 typedef struct s_philarg
 {
-	int						id;
-	int						meals;
-	long long int			last_meal;
-	char					*deathlock_name;
-	sem_t					*deathlock;
-	t_data					*data;
+	int				id;
+	int				meals;
+	long long int	last_meal;
+	char			*deathlock_name;
+	sem_t			*deathlock;
+	t_data			*data;
 
 }			t_philarg;
 

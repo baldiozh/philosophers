@@ -6,11 +6,36 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 20:27:41 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 20:07:40 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:16:54 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
+
+int	check_meals(t_philarg *philo)
+{
+	if (philo->data->meals_num != -1)
+	{
+		if (philo->meals == philo->data->meals_num)
+		{
+			philo->data->stop = 1;
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int	death_check(t_philarg *philo)
+{
+	if ((long long)(timeofday() - philo->last_meal) > philo->data->tdeath)
+	{
+		philo->data->isdead = 1;
+		printf("%llu %d died\n",
+			(timeofday() - philo->data->prog_start), philo->id);
+		return (1);
+	}
+	return (0);
+}
 
 void	*monitoring(void *d)
 {
@@ -20,8 +45,14 @@ void	*monitoring(void *d)
 	while (!philo->data->stop && !philo->data->isdead)
 	{
 		sem_wait(philo->deathlock);
-		check_meals(philo);
-		death_check(philo);
+		if (check_meals(philo)|| death_check(philo))
+		{
+			printf("is dead = %d\n", philo->data->isdead);
+			stop(philo->data);
+			terminate(philo->data);
+		}
+		// check_meals(philo);
+		// death_check(philo);
 		sem_post(philo->deathlock);
 		usleep(500);
 	}
@@ -38,7 +69,9 @@ int	philo_life(t_data *data, int i)
 	if (philo.id % 2 == 0)
 		sleep_think(&philo);
 	while (!data->stop && !data->isdead)
+	{
 		eating(&philo);
+	}
 	pthread_join(monitor, NULL);
 	sem_unlink(philo.deathlock_name);
 	free(philo.deathlock_name);
@@ -47,17 +80,6 @@ int	philo_life(t_data *data, int i)
 	return (EXIT_SUCCESS);
 }
 
-int	death_check(t_philarg *philo)
-{
-	if ((long long)(timeofday() - philo->last_meal) > philo->data->tdeath)
-	{
-		philo->data->isdead = 1;
-		printf("%llu %d died\n",
-			(timeofday() - philo->data->prog_start), philo->id);
-		return (1);
-	}
-	return (0);
-}
 
 void	start_process(t_data *data)
 {
@@ -69,9 +91,7 @@ void	start_process(t_data *data)
 	{
 		data->pids[i] = fork();
 		if (data->pids[i] == 0)
-		{
 			exit(philo_life(data, i));
-		}
 		if (data->pids[i] == -1)
 			error(ERR_PID);
 		i++;

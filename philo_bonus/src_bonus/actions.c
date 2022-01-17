@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 21:18:26 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 18:06:48 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:13:49 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	eating(t_philarg *philo)
 		philo->meals++;
 		philo->last_meal = timeofday();
 		message(philo, EAT);
-		sem_post(philo->deathlock);
 		ft_usleep(philo->data->teat);
+		sem_post(philo->deathlock);
 		forks(philo, PUT);
 	}
 	if (!philo->data->isdead && !philo->data->stop)

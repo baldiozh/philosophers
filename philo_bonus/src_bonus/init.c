@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 17:22:13 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 20:07:33 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:19:01 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_child_process(t_data *data, t_philarg *philo, int i)
 	num = ft_itoa(i);
 	philo->deathlock_name = ft_strjoin(DEATHLOCK, num);
 	free(num);
-	sem_unlink(philo[i].deathlock_name);
+	sem_unlink(philo->deathlock_name);
 	philo->deathlock = sem_open(philo->deathlock_name, O_CREAT, 0777, 1);
 	philo->data = data;
 }

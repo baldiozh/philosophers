@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 16:50:48 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 18:50:02 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:14:51 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,4 @@ void	message(t_philarg *philo, char *action)
 	sem_wait(philo->data->speaklock);
 	printf("%d %d %s\n", timestamp, philo->id, action);
 	sem_post(philo->data->speaklock);
-}
-
-int	check_meals(t_philarg *philo)
-{
-	if (philo->data->meals_num != -1)
-	{
-		if (philo->meals == philo->data->meals_num)
-		{
-			philo->data->stop = 1;
-			return (1);
-		}
-	}
-	return (0);
 }
