@@ -6,7 +6,7 @@
 /*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:36:32 by gmckinle          #+#    #+#             */
-/*   Updated: 2022/01/16 20:11:41 by gmckinle         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:34:06 by gmckinle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int	ft_atoi(const char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	if (res > INT_MAX && sign == 1)
+	// if (str[i])
+	// 	return(0);
+	if ((res > INT_MAX && sign == 1 ) || str[i] != '\0')
 		return (-1);
 	if (res > (long long)INT_MAX + 1 && sign == -1)
 		return (0);

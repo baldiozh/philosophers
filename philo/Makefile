@@ -10,15 +10,12 @@ HEADERS			= $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
 # Sources
 SRC_DIR			= ./src/
-#SRC_BONUS_DIR	= ./src_bonus
 SRC_LIST		= main.c \
 				ft_atoi.c ft_putstr_fd.c \
 				init.c letsgo.c actions.c utils.c \
 				terminate.c
-
-# SRC_BONUS_LIST = main.c init.c utils.c ft_atoi.c
 SRC 			= $(addprefix $(SRC_DIR), $(SRC_LIST))
-# SRCS_BONUS = $(addprefix $(SRC_BONUS_DIRECTORY), $(SRC_BONUS_LIST))
+
 
 # Objects
 OBJ_DIR			= obj/
@@ -40,11 +37,9 @@ all: 	$(NAME)
 $(NAME): $(OBJ_DIR) $(OBJ) Makefile
 		@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME)
 		@echo "$(GREEN)$(NAME) is ready.$(RESET)"
-#@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
 
 $(OBJ_DIR):
 		@mkdir -p $(OBJ_DIR)
-#@echo "$(NAME): $(GREEN)$(OBJ_DIR) was created$(RESET)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
 		@$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
